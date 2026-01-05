@@ -2,3 +2,8 @@
     max-width: 13vh;
     height: 100%;
 }
+
+.draw-card-button.disabled{
+    opacity: 0.5;
+    pointer-events: none;
+}

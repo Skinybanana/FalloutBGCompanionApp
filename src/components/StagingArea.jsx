@@ -9,7 +9,7 @@ import MessageLog from './MessageLog';
 import PlayerInventory from './PlayerInventory';
 import QuestMarkers from './QuestMarkers';
 
-const StagingArea = ({ onCardFocus }) => {
+const StagingArea = ({ onCardFocus, isDrawLocked }) => {
     const { autoSave, setShowOverlay, showOverlay, overlayContent, players, playerCards, setPlayerCards, stagedCards, drawCard, vault7Active, vault44Active, vault84Active, vault109Active, specialStarActive, specialShieldActive, setStagedCards, storeHistory, restoreHistory} = useEncounterDeck();
     const [ questMarkers,  ] = useState(['Y','LB','B','P','R','O']);
     const [currentMarkerIndex, setCurrentMarkerIndex] = useState(0); // To track current index
@@ -26,6 +26,14 @@ const StagingArea = ({ onCardFocus }) => {
     const toggleMessageLog = () => {
         setShowMessageLog(!showMessageLog);
       };
+
+    const handleDraw = (deckType) => {
+        if (isDrawLocked) return;
+        const drawnCard = drawCard(deckType);
+        if (!drawnCard) return;
+        onCardFocus(drawnCard);
+        storeHistory();
+    };
 
 
     const onMarkerDragEnd = (markerRef, collidedCard) => {
@@ -167,14 +175,16 @@ const StagingArea = ({ onCardFocus }) => {
                                 <button
                                     className="button-84"
                                     style={{ width: '100%' }}
-                                    onClick={() => { onCardFocus(drawCard('encounter')); storeHistory(); }}
+                                    onClick={() => handleDraw('encounter')}
+                                    disabled={isDrawLocked}
                                     >
                                     Encounter
                                     </button>
                                     <button
                                     className="button-84"
                                     style={{ width: '100%' }}
-                                    onClick={() => { onCardFocus(drawCard('settlement')); storeHistory(); }}
+                                    onClick={() => handleDraw('settlement')}
+                                    disabled={isDrawLocked}
                                     >
                                     Settlement
                                     </button>
@@ -182,7 +192,8 @@ const StagingArea = ({ onCardFocus }) => {
                                     <button
                                         className="button-84"
                                         style={{ width: '100%' }}
-                                        onClick={() => { onCardFocus(drawCard('vault7')); storeHistory(); }}
+                                        onClick={() => handleDraw('vault7')}
+                                        disabled={isDrawLocked}
                                     >
                                         Vault 7
                                     </button>
@@ -191,7 +202,8 @@ const StagingArea = ({ onCardFocus }) => {
                                     <button
                                         className="button-84"
                                         style={{ width: '100%' }}
-                                        onClick={() => { onCardFocus(drawCard('vault84')); storeHistory(); }}
+                                        onClick={() => handleDraw('vault84')}
+                                        disabled={isDrawLocked}
                                     >
                                         Vault 84
                                     </button>
@@ -200,7 +212,8 @@ const StagingArea = ({ onCardFocus }) => {
                                     <button
                                         className="button-84"
                                         style={{ width: '100%' }}
-                                        onClick={() => { onCardFocus(drawCard('vault109')); storeHistory(); }}
+                                        onClick={() => handleDraw('vault109')}
+                                        disabled={isDrawLocked}
                                     >
                                         Vault 109
                                     </button>
@@ -209,7 +222,8 @@ const StagingArea = ({ onCardFocus }) => {
                                     <button
                                         className="button-84"
                                         style={{ width: '100%' }}
-                                        onClick={() => { onCardFocus(drawCard('vault44')); storeHistory(); }}
+                                        onClick={() => handleDraw('vault44')}
+                                        disabled={isDrawLocked}
                                     >
                                         Vault 44
                                     </button>
@@ -218,7 +232,8 @@ const StagingArea = ({ onCardFocus }) => {
                                     <button
                                         className="button-84"
                                         style={{ width: '100%' }}
-                                        onClick={() => { onCardFocus(drawCard('specialStar')); storeHistory(); }}
+                                        onClick={() => handleDraw('specialStar')}
+                                        disabled={isDrawLocked}
                                     >
                                         Special Star
                                     </button>
@@ -227,7 +242,8 @@ const StagingArea = ({ onCardFocus }) => {
                                     <button
                                         className="button-84"
                                         style={{ width: '100%' }}
-                                        onClick={() => { onCardFocus(drawCard('specialShield')); storeHistory(); }}
+                                        onClick={() => handleDraw('specialShield')}
+                                        disabled={isDrawLocked}
                                     >
                                         Special Shield
                                     </button>
@@ -274,17 +290,20 @@ const StagingArea = ({ onCardFocus }) => {
                 <div className={`button-area ${screenWidth <= 600} flex flex-row`}>
                 <DrawCardButton
                         type="encounter"
-                        onClick={() => {onCardFocus(drawCard('encounter'));storeHistory();}} // Placeholder
+                        onClick={() => handleDraw('encounter')} // Placeholder
+                        disabled={isDrawLocked}
                     />
                     <DrawCardButton
                         type="settlement"
-                        onClick={() => {onCardFocus(drawCard('settlement'));storeHistory();}} // Placeholder
+                        onClick={() => handleDraw('settlement')} // Placeholder
+                        disabled={isDrawLocked}
                     />
                     {vault7Active && ( /* Conditional rendering for vault buttons */
                         <>
                             <DrawCardButton
                                 type="vault7"
-                                onClick={() => {onCardFocus(drawCard('vault7'));storeHistory();}} // Placeholder
+                                onClick={() => handleDraw('vault7')} // Placeholder
+                                disabled={isDrawLocked}
                             />
                         </>
                     )}    
@@ -292,7 +311,8 @@ const StagingArea = ({ onCardFocus }) => {
                         <>
                             <DrawCardButton
                                 type="vault84"
-                                onClick={() => {onCardFocus(drawCard('vault84'));storeHistory();}} // Placeholder
+                                onClick={() => handleDraw('vault84')} // Placeholder
+                                disabled={isDrawLocked}
                             />
                         </>
                     )}    
@@ -300,7 +320,8 @@ const StagingArea = ({ onCardFocus }) => {
                         <>
                             <DrawCardButton
                                 type="vault109"
-                                onClick={() => {onCardFocus(drawCard('vault109'));storeHistory();}} // Placeholder
+                                onClick={() => handleDraw('vault109')} // Placeholder
+                                disabled={isDrawLocked}
                             />
                         </>
                     )}    
@@ -308,7 +329,8 @@ const StagingArea = ({ onCardFocus }) => {
                         <>
                             <DrawCardButton
                                 type="vault44"
-                                onClick={() => {onCardFocus(drawCard('vault44'));storeHistory();}} // Placeholder
+                                onClick={() => handleDraw('vault44')} // Placeholder
+                                disabled={isDrawLocked}
                             />
                         </>
                     )}
@@ -316,7 +338,8 @@ const StagingArea = ({ onCardFocus }) => {
                         <>
                             <DrawCardButton
                                 type="specialStar"
-                                onClick={() => {onCardFocus(drawCard('specialStar'));storeHistory();}} // Placeholder
+                                onClick={() => handleDraw('specialStar')} // Placeholder
+                                disabled={isDrawLocked}
                             />
                         </>
                     )}
@@ -324,7 +347,8 @@ const StagingArea = ({ onCardFocus }) => {
                         <>
                             <DrawCardButton
                                 type="specialShield"
-                                onClick={() => {onCardFocus(drawCard('specialShield'));storeHistory();}} // Placeholder
+                                onClick={() => handleDraw('specialShield')} // Placeholder
+                                disabled={isDrawLocked}
                             />
                         </>
                     )}

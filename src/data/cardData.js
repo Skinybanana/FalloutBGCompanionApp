@@ -594,11 +594,15 @@ const cardData = {
     },
     '024': {
       hoverAreas: [
-            { top: '64%', width: '100%', height: '10%' } // Area for the first option
+            { top: '64%', width: '100%', height: '10%' }, // Area for the first option
+            { top: '89%', width: '100%', height: '10%' }, // Area for the second option
+
           ],
           imagePath : require(`../images/library_deck/024.webp`),
           actions: [
             {
+                type: ['trash']
+            }, {
                 type: ['trash']
             }
         ],
@@ -676,11 +680,14 @@ const cardData = {
     },
     '028': {
       hoverAreas: [
+            { top: '62%', width: '100%', height: '9%' }, // Area for the first option
             { top: '88%', width: '100%', height: '11%' } // Area for the second option
           ],
           imagePath : require(`../images/library_deck/028.webp`),
           actions: [
             {
+                type: ['trash']
+            }, {
                 type: ['trash']
             }
             
@@ -3105,6 +3112,7 @@ const cardData = {
       },
       '148': {
         hoverAreas: [
+              { top: '47%', width: '100%', height: '11%' }, // Area for the first option
               { top: '80%', width: '100%', height: '5%' } // Area for the second option
             ],
             imagePath : require(`../images/library_deck/148.webp`),

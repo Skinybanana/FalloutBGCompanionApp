@@ -18,7 +18,10 @@ const App = () => {
         <EncounterDeckProvider> {/* Wrap with EncounterDeckProvider */}
             <div className="app-container">
                 {isScenarioSet ? ( // Conditional rendering based on scenario status
-                    <StagingArea onCardFocus={toggleFocusCard}/> // Render StagingArea if the scenario is set
+                    <StagingArea
+                        onCardFocus={toggleFocusCard}
+                        isDrawLocked={focusedCard !== null}
+                    /> // Render StagingArea if the scenario is set
                 ) : (
                     <Menu onScenarioSet={setIsScenarioSet} />
                          // Pass the new callback
