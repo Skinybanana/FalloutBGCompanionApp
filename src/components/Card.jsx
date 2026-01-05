@@ -376,7 +376,6 @@ const Card = forwardRef(({ cardNumber, onCardFocus, isDisabled }, ref) => {
                 ref ={cardRef}
                 src={imagePath}
                 alt={`Card}${cardNumber}`}
-                style={{ width:'auto', height:'auto', }}
            
             />
             {hoverAreas.map((area, index) => (

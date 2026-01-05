@@ -170,7 +170,8 @@
 }
 
 .card-container {
-  min-width: 250px; 
+  width: clamp(180px, 22vw, 340px);
+  min-width: clamp(180px, 22vw, 340px);
   margin: 5px; /* Provides a little space between cards */
   flex-shrink: 0; /* Prevents the card from shrinking */
 }

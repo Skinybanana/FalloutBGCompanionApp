@@ -30,8 +30,8 @@ const App = () => {
                         position: 'fixed', // Position fixed to overlay everything
                         top: '50%',
                         left: '50%',
-                        width: '370px', // Set a fixed width
-                        height: '600px', // Set a fixed height
+                        width: 'min(80vw, 370px)',
+                        height: 'min(85vh, 600px)',
                         transform: 'translate(-50%, -50%)', // Center the card
                         zIndex: 999, // Ensure it overlaps everything
                         overflow: 'hidden'
