@@ -72,7 +72,7 @@ const Menu = ({ onScenarioSelect, onScenarioSet }) => {
 
     const handleScenarioClick = (scenarioKey) => {
         if (playerCount === 0){
-            alert("You must enter the numer of players");
+            alert("Debes seleccionar la cantidad de jugadores");
             return;
         }
         const initialCards = scenarios[scenarioKey];
@@ -154,17 +154,17 @@ const Menu = ({ onScenarioSelect, onScenarioSet }) => {
 
         return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-                <p className='font-serif text-xl'>You may require cards:</p><p className='font-serif text-xl'> 104, 204-213 and 238</p>
+        
     <div className="p-8 bg-white shadow-lg rounded-lg text-center">
-        <p>This webapp saves session data on your browser in case you lose connection or close the browser tab</p>
+        <p>Esta aplicación guarda los datos de la sesión en el navegador en caso de que pierdas conección o cierres la ventana</p>
         {savedData && (
             <button
              onClick={loadOldGame}
              className="px-4 py-1 my-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-700 transition duration-300"
-             >Resume Session
+             >Continuar Sesión
              </button>
         )}
-        <h1 className="text-2xl font-bold mb-4">Choose Scenario</h1>
+        <h1 className="text-2xl font-bold mb-4">Escoger escenario</h1>
         {/* Adjust the grid-cols to change number of columns */}
         <div className="grid grid-cols-1 sm:grid-cols-5 gap-4 mb-6">
             {Object.keys(scenarios).map((scenarioKey) => (
@@ -181,7 +181,7 @@ const Menu = ({ onScenarioSelect, onScenarioSet }) => {
             ))}
         </div>
 
-        <h2 className="text-xl mb-4">Set Number of Players</h2>
+        <h2 className="text-xl mb-4">Selecciona el número de jugadores</h2>
         <div className="flex justify-center">
             {[1, 2, 3, 4].map((count) => (
                 <button
@@ -189,7 +189,7 @@ const Menu = ({ onScenarioSelect, onScenarioSet }) => {
                     onClick={() => handlePlayerCount(count)}
                     className={`mx-2 px-4 py-2 ${playerCount === count ? 'bg-green-700' : 'bg-green-500'} text-white rounded-lg hover:bg-green-600 focus:outline-none transition-colors`}
                 >
-                    {count} Player{count > 1 ? 's' : ''}
+                    {count} Jugador{count > 1 ? 'es' : ''}
                 </button>
             ))}
         </div>
@@ -212,12 +212,14 @@ const Menu = ({ onScenarioSelect, onScenarioSet }) => {
             onClick={togglePopup}
             className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
         >
-            Instructions
+            Instrucciones
         </button>
         <Popup show={showPopup} onClose={togglePopup} />
         </div>
     </div>
-    <span><p>Versión modificada por Skinybanana</p></span>
+    
+     <span><p>Versión original por xxYETTERxx</p></span>
+     <span><p>Versión en español por Skinybanana</p></span>
 </div>
 
         );

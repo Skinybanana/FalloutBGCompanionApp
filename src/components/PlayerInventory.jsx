@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import Card from './Card'; // Component for individual cards
+import { useState } from 'react';
 import '../styles/PlayerInventory.css'; // Ensure proper overlay styles
-import { useEncounterDeck } from './EncounterDeck';
+import Card from './Card'; // Component for individual cards
 
 const PlayerInventory = ({ players, playerCards, setPlayerCards, onClose, onCardFocus }) => {
   const [selectedPlayerIndex, setSelectedPlayerIndex] = useState(null); // State for the selected player index
@@ -13,7 +12,7 @@ const PlayerInventory = ({ players, playerCards, setPlayerCards, onClose, onCard
   return (
     <div className="player-inventory-overlay">
       <button onClick={onClose} className="close-button">Close</button> {/* Button to close overlay */}
-      <h2>Player Inventory</h2>
+      <h2>Inventario</h2>
 
       {/* Player selection buttons */}
       <div className="player-buttons">

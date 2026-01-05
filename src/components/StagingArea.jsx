@@ -1,13 +1,13 @@
 // StagingArea.jsx
-import React, { useState, useEffect, useRef } from 'react';
-import Card from './Card'; // Importing other required components
+import { useEffect, useRef, useState } from 'react';
 import '../styles/StagingArea.css'; // Importing CSS
-import {  useEncounterDeck } from './EncounterDeck';
+import Card from './Card'; // Importing other required components
 import DrawCardButton from './DrawCardButton'; // Import draw card button
-import QuestMarkers from './QuestMarkers';
-import PlayerInventory from './PlayerInventory';
+import { useEncounterDeck } from './EncounterDeck';
 import MessageDisplay from './MessageDisplay';
 import MessageLog from './MessageLog';
+import PlayerInventory from './PlayerInventory';
+import QuestMarkers from './QuestMarkers';
 
 const StagingArea = ({ onCardFocus }) => {
     const { autoSave, setShowOverlay, showOverlay, overlayContent, players, playerCards, setPlayerCards, stagedCards, drawCard, vault7Active, vault44Active, vault84Active, vault109Active, specialStarActive, specialShieldActive, setStagedCards, storeHistory, restoreHistory} = useEncounterDeck();
@@ -254,9 +254,9 @@ const StagingArea = ({ onCardFocus }) => {
                             {(screenWidth > 600 && screenHeight > 850) && (
                             <> 
                                 <button className='button-84' onClick={createMarker}>Quest Marker</button>
-                                <button className='button-84' onClick={restoreHistory}>Undo</button>
-                                <button className='button-84' onClick={togglePlayerInventory}>Player Inventory</button>
-                                <button className="button-84" onClick={toggleMessageLog}>History Log</button>
+                                <button className='button-84' onClick={restoreHistory}>Deshacer</button>
+                                <button className='button-84' onClick={togglePlayerInventory}>Inventario</button>
+                                <button className="button-84" onClick={toggleMessageLog}>Logs</button>
                             </>
                             )}
                             {/* <button className='button-84' onClick={setInputCard}>Stage Card</button>

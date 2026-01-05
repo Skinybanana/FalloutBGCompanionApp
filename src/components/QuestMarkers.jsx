@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const QuestMarkers = ({ onDragEnd, onDragStart, markerId, onRemove }) => {
     const [position, setPosition] = useState({ x: 0, y: 0 }); // Initial position

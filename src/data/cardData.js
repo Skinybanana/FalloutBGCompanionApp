@@ -3105,7 +3105,7 @@ const cardData = {
       },
       '148': {
         hoverAreas: [
-              { top: '80%', width: '100%', height: '15%' } // Area for the second option
+              { top: '80%', width: '100%', height: '5%' } // Area for the second option
             ],
             imagePath : require(`../images/library_deck/148.webp`),
             actions: [
