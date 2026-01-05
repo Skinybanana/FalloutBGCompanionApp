@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useEncounterDeck } from './EncounterDeck';
+import { useEffect, useState } from 'react';
 import { addCard, shuffleDeck } from '../functions/cardFunctions';
 import '../styles/Menu.css';
+import { useEncounterDeck } from './EncounterDeck';
 import Popup from './Popup';
 
 const Menu = ({ onScenarioSelect, onScenarioSet }) => {
@@ -217,8 +217,7 @@ const Menu = ({ onScenarioSelect, onScenarioSet }) => {
         <Popup show={showPopup} onClose={togglePopup} />
         </div>
     </div>
-    <span><p>For bug reports, feedback and suggestions</p></span>
-    <span>Email: nosnetto@hotmail.com </span>
+    <span><p>Versión modificada por Skinybanana</p></span>
 </div>
 
         );
