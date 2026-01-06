@@ -8,9 +8,10 @@ import MessageDisplay from './MessageDisplay';
 import MessageLog from './MessageLog';
 import PlayerInventory from './PlayerInventory';
 import QuestMarkers from './QuestMarkers';
+import cardData from '../data/cardData';
 
 const StagingArea = ({ onCardFocus, isDrawLocked }) => {
-    const { autoSave, setShowOverlay, showOverlay, overlayContent, players, playerCards, setPlayerCards, stagedCards, drawCard, vault7Active, vault44Active, vault84Active, vault109Active, specialStarActive, specialShieldActive, setStagedCards, storeHistory, restoreHistory} = useEncounterDeck();
+    const { autoSave, setShowOverlay, showOverlay, overlayContent, players, playerCards, setPlayerCards, stagedCards, drawCard, vault7Active, vault44Active, vault84Active, vault109Active, specialStarActive, specialShieldActive, setStagedCards, storeHistory, restoreHistory, showMessage } = useEncounterDeck();
     const [ questMarkers,  ] = useState(['Y','LB','B','P','R','O']);
     const [currentMarkerIndex, setCurrentMarkerIndex] = useState(0); // To track current index
     const [renderedMarkers, setRenderedMarkers] = useState([]);
@@ -18,6 +19,8 @@ const StagingArea = ({ onCardFocus, isDrawLocked }) => {
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     const [screenHeight, setScreenHeight] = useState(window.innerHeight);
     const [showMessageLog, setShowMessageLog] = useState(false);
+    const [debugOpen, setDebugOpen] = useState(false);
+    const [debugInput, setDebugInput] = useState('');
     const stagingAreaRef = useRef(null);
     const cardRefs = useRef([]);
     
@@ -87,6 +90,50 @@ const StagingArea = ({ onCardFocus, isDrawLocked }) => {
         setPlayerInventoryActive((prevState) => !prevState);
     };
 
+    const toggleDebug = () => {
+        setDebugOpen((prevState) => !prevState);
+    };
+
+    const normalizeCardId = (rawValue) => {
+        const trimmed = rawValue.trim();
+        if (!trimmed) return '';
+        const hasLetters = /[a-z]/i.test(trimmed);
+        if (hasLetters) return trimmed.toUpperCase();
+        const numeric = parseInt(trimmed, 10);
+        if (Number.isNaN(numeric)) return '';
+        return numeric.toString().padStart(3, '0');
+    };
+
+    const handleDebugAdd = () => {
+        const normalizedId = normalizeCardId(debugInput);
+        if (!normalizedId) {
+            showMessage('Ingresa un numero de carta valido');
+            return;
+        }
+        if (!cardData[normalizedId]) {
+            showMessage(`Carta ${normalizedId} no encontrada`);
+            return;
+        }
+        setStagedCards([...stagedCards, normalizedId]);
+        setDebugInput('');
+        setDebugOpen(false);
+    };
+
+    const handleDebugRemove = () => {
+        const normalizedId = normalizeCardId(debugInput);
+        if (!normalizedId) {
+            showMessage('Ingresa un numero de carta valido');
+            return;
+        }
+        if (!stagedCards.includes(normalizedId)) {
+            showMessage(`Carta ${normalizedId} no esta en juego`);
+            return;
+        }
+        setStagedCards(stagedCards.filter((card) => card !== normalizedId));
+        setDebugInput('');
+        setDebugOpen(false);
+    };
+
     //testing
     const generateNumberArray = (start, end) => {
         const arr = [];
@@ -150,6 +197,26 @@ const StagingArea = ({ onCardFocus, isDrawLocked }) => {
                 <button onClick={() => setShowOverlay(false)}>Cancel</button>
             </div>
             )}
+        {debugOpen && (
+            <div className="debug-overlay">
+                <div className="debug-content">
+                    <p>Agregar carta por numero (ej: 1 o 001)</p>
+                    <input
+                        type="text"
+                        value={debugInput}
+                        onChange={(event) => setDebugInput(event.target.value)}
+                        onKeyDown={(event) => {
+                            if (event.key === 'Enter') handleDebugAdd();
+                        }}
+                    />
+                    <div className="debug-actions">
+                        <button className="button-84" onClick={handleDebugAdd}>Agregar</button>
+                        <button className="button-84" onClick={handleDebugRemove}>Quitar</button>
+                        <button className="button-84" onClick={toggleDebug}>Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        )}
         <div ref= {stagingAreaRef} className="staging-area">
             {stagedCards.map((card, index) => (
                 <div className='card-container' key={card}>
@@ -265,6 +332,11 @@ const StagingArea = ({ onCardFocus, isDrawLocked }) => {
                                     style={{ width: '100%' }}
                                     onClick={createMarker}
                                     >QuestMarker</button>
+                                    <button
+                                    className="button-84"
+                                    style={{ width: '100%' }}
+                                    onClick={toggleDebug}
+                                    >Debug</button>
                             </>
                         )}
                             {(screenWidth > 600 && screenHeight > 850) && (
@@ -273,6 +345,7 @@ const StagingArea = ({ onCardFocus, isDrawLocked }) => {
                                 <button className='button-84' onClick={restoreHistory}>Deshacer</button>
                                 <button className='button-84' onClick={togglePlayerInventory}>Inventario</button>
                                 <button className="button-84" onClick={toggleMessageLog}>Logs</button>
+                                <button className="button-84" onClick={toggleDebug}>Debug</button>
                             </>
                             )}
                             {/* <button className='button-84' onClick={setInputCard}>Stage Card</button>
