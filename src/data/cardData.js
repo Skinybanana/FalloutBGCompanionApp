@@ -594,11 +594,15 @@ const cardData = {
     },
     '024': {
       hoverAreas: [
-            { top: '64%', width: '100%', height: '10%' } // Area for the first option
+            { top: '64%', width: '100%', height: '10%' }, // Area for the first option
+            { top: '89%', width: '100%', height: '10%' }, // Area for the second option
+
           ],
           imagePath : require(`../images/library_deck/024.webp`),
           actions: [
             {
+                type: ['trash']
+            }, {
                 type: ['trash']
             }
         ],
@@ -606,7 +610,7 @@ const cardData = {
     '025': {
       hoverAreas: [
             { top: '64%', width: '100%', height: '9%' }, // Area for the first option
-            { top: '788%', width: '100%', height: '11%' }, // Area for the second option
+            { top: '88%', width: '100%', height: '11%' }, // Area for the second option
           ],
           imagePath : require(`../images/library_deck/025.webp`),
           actions: [
@@ -676,11 +680,14 @@ const cardData = {
     },
     '028': {
       hoverAreas: [
+            { top: '62%', width: '100%', height: '9%' }, // Area for the first option
             { top: '88%', width: '100%', height: '11%' } // Area for the second option
           ],
           imagePath : require(`../images/library_deck/028.webp`),
           actions: [
             {
+                type: ['trash']
+            }, {
                 type: ['trash']
             }
             
@@ -1206,24 +1213,31 @@ const cardData = {
       },
       '054': {
         hoverAreas: [
+              { top: '55%', width: '100%', height: '10%' }, // Area for the first option
               { top: '89%', width: '100%', height: '10%' } // Area for the second option
             ],
             imagePath : require(`../images/library_deck/054.webp`),
             actions: [
+                      {
+                  type: ['trash']
+              },
               {
                 type: ['stage'],
                 cards: ['055']
-              }
+              } 
                
           ],
       },
       '055': {
         hoverAreas: [
+                        { top: '70%', width: '100%', height: '10%' }, // Area for the first option
               { top: '90%', width: '100%', height: '10%' } // Area for the second option
             ],
             imagePath : require(`../images/library_deck/055.webp`),
             actions: [
               {
+                type: ['trash']
+              } ,  {
                 type: ['trash']
               }
                
@@ -2148,7 +2162,7 @@ const cardData = {
       },
       '099': {
         hoverAreas: [
-              { top: '99%', width: '100%', height: '1%' }, // Area for the first option
+              { top: '45%', width: '100%', height: '100%' }, // Area for the first option
             ],
             imagePath : require(`../images/library_deck/099.webp`),
             actions: [
@@ -3105,10 +3119,14 @@ const cardData = {
       },
       '148': {
         hoverAreas: [
-              { top: '80%', width: '100%', height: '5%' } // Area for the second option
+              { top: '57%', width: '100%', height: '11%' }, // Area for the first option
+              { top: '80%', width: '100%', height: '100%' } // Area for the second option
             ],
             imagePath : require(`../images/library_deck/148.webp`),
             actions: [
+                {
+                  type: ['trash'],
+              },
               {
                   type: ['stage'],
                   cards: ['149']
@@ -3117,7 +3135,7 @@ const cardData = {
       },
       '149': {
         hoverAreas: [
-              { top: '99%', width: '100%', height: '1%' }, // Area for the first option
+              { top: '47%', width: '100%', height: '100%' }, // Area for the first option
             ],
             imagePath : require(`../images/library_deck/149.webp`),
             actions: [
@@ -3285,7 +3303,7 @@ const cardData = {
       },
       '158': {
         hoverAreas: [
-              { top: '45%', width: '100%', height: '13%' }, // Area for the first option
+              { top: '45%', width: '100%', height: '23%' }, // Area for the first option
               { top: '88%', width: '100%', height: '12%' } // Area for the second option
             ],
             imagePath : require(`../images/library_deck/158.webp`),

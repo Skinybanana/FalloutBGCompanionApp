@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/DrawCardButton.css'; // Import your CSS
 
-const DrawCardButton = ({ type, onClick }) => {
+const DrawCardButton = ({ type, onClick, disabled = false }) => {
     const buttonImages = {
         encounter: require('../images/misc_assets/encounter.png'), // Update with your image path
         settlement: require('../images/misc_assets/settlement.png'),
@@ -18,9 +18,9 @@ const DrawCardButton = ({ type, onClick }) => {
         <img
             src={buttonImages[type]}
             alt={`${type} button`} // Descriptive alt text
-            className="draw-card-button"
+            className={`draw-card-button${disabled ? ' disabled' : ''}`}
             style={{padding: '10px'}}
-            onClick={onClick} // Handle click events
+            onClick={disabled ? undefined : onClick} // Handle click events
         />
     );
 };
